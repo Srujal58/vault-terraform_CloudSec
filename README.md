@@ -19,3 +19,9 @@ Download and install Vault from the [official website](https://www.vaultproject.
 
 vault server -dev
 
+
+### 2. Enable AWS Secrets Engine
+![Alt text](Picture2.png)
+Enable the AWS secrets engine in Vault:
+vault secrets enable aws
+
