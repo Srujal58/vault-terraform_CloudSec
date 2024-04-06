@@ -10,11 +10,12 @@ Before you begin, ensure you have the following prerequisites:
 - An AWS account with appropriate permissions to create resources.
 
 ## Setup Vault
+![Alt text](picture1.png)
 
 ### 1. Install and Start Vault
 
 Download and install Vault from the [official website](https://www.vaultproject.io/downloads). Once installed, start Vault in dev mode:
 ```bash
-![Alt text](picture1.png)
+
 vault server -dev
 
