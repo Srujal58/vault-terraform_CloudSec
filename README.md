@@ -16,3 +16,4 @@ Before you begin, ensure you have the following prerequisites:
 Download and install Vault from the [official website](https://www.vaultproject.io/downloads). Once installed, start Vault in dev mode:
 ```bash
 vault server -dev
+![Alt text](picture1.png)
