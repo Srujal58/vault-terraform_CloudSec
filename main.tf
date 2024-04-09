@@ -10,25 +10,30 @@ data "vault_generic_secret" "aws_credentials" {
   path = var.vault_aws_secret_path
 }
 
-resource "aws_vpc" "example_vpc" {
-  cidr_block = "10.0.0.0/16"  
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "~> 3.0"
+    }
+  }
 }
 
 
-resource "aws_subnet" "example_subnet" {
-  vpc_id            = aws_vpc.example_vpc.id
-  cidr_block        = "10.0.1.0/24"  
-  availability_zone = "us-east-1a"   
+module "vpc" {
+  source = "./vpc"
+}
+
+
+module "subnet" {
+  source = "./subnet"
+  vpc_id = module.vpc.vpc_id
 }
 
 resource "aws_instance" "example_instance" {
-  ami                    = var.ami_id
-  instance_type          = var.instance_type
-  subnet_id              = aws_subnet.example_subnet.id
-  key_name               = var.key_name
-  user_data = file("userdata.sh")
+  ami           = var.ami_id
+  instance_type = var.instance_type
+  subnet_id     = module.subnet.subnet_id
+  key_name      = var.key_name
+  user_data     = file("userdata.sh")
 }
-
-
-  
-
