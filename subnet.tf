@@ -1,9 +1,10 @@
-variable "subnet_cidr_block" {
-  description = "CIDR block for the subnet"
-  default     = "10.0.1.0/24"  
-}
+variable "vpc_id" {}
 
-variable "subnet_availability_zone" {
-  description = "Availability zone for the subnet"
-  default     = "us-east-1a"  
+resource "aws_subnet" "example_subnet" {
+  vpc_id            = var.vpc_id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "us-east-1a"
+}
+output "subnet_id" {
+  value = aws_subnet.example_subnet.id
 }
